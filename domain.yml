@@ -1,0 +1,68 @@
+session_config:
+  session_expiration_time: 0.0
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- bot_challenge
+- password_reset
+- inform
+- thank
+- help
+- problem_email
+- open_incident:
+    use_entities: []
+- out_of_scope
+- restart
+
+entities:
+- email
+- priority
+slots:
+  email:
+    type: unfeaturized
+  incident_title:
+    type: unfeaturized
+  priority:
+    type: unfeaturized
+  problem_description:
+    type: unfeaturized
+  requested_slot:
+    type: unfeaturized
+responses:
+  utter_out_of_scope:
+  - text: Przepraszam, nie jestem pewien, jak na to odpowiedzieć. Wpisz „pomoc”, aby uzyskać pomoc.
+  utter_greet:
+  - text: Dzień dobry. Jestem wirtualnym asystentem Helpdesk.
+  utter_goodbye:
+  - text: Do widzenia
+  utter_iamabot:
+  - text: Jestem botem.
+  utter_ask_email:
+  - text: Jaki jest twój adres e-mail do założenia zgłoszenia?
+  utter_ask_incident_title:
+  - text: Jaki powinien być tytuł tego zgłoszenia?
+  utter_ask_problem_description:
+  - text: Jaki powinien być opis problemu?
+  utter_ask_priority:
+  - text: Jaki powinien być priorytet tego problemu?
+    buttons:
+      - payload: /inform{"priority":"niski"}
+        title: niski
+      - payload: /inform{"priority":"średni"}
+        title: średni
+      - payload: /inform{"priority":"wysoki"}
+        title: wysoki
+  utter_no_priority:
+  - text: Niestety "{priority}" nie jest prawidłowym priorytetem. Proszę spróbuj ponownie.
+  utter_no_email:
+  - text: Niestety, "{email}" nie znajduje się w naszym systemie zarządzania incydentami. Proszę spróbuj ponownie.
+  utter_help:
+  - text: Mogę pomóc Ci otworzyć zgłoszenie serwisowe. Możesz zadać mi takie pytania, jak „Otwórz incydent”, „Pomóż mi zresetować hasło” lub „Mam problem z pocztą e-mail”.
+  utter_welcome:
+  - text: Nie ma za co!
+  utter_default:
+  - text: Nie do końca to zrozumiałem. Czy mógłbyś sformułować inaczej?
+
+forms:
+- open_incident_form
